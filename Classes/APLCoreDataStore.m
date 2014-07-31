@@ -4,7 +4,6 @@
 
 @property (strong, nonatomic) NSManagedObjectContext *mainQueueContext;
 @property (strong, nonatomic) NSManagedObjectContext *privateQueueContext;
-@property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 @end
@@ -40,10 +39,6 @@ static dispatch_once_t once_token = 0;
 
 + (NSURL *)applicationDocumentsDirectory {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-}
-
-+ (NSURL *)managedObjectModelURL {
-    return [[NSBundle mainBundle] URLForResource:@"Model" withExtension:@"momd"];
 }
 
 + (NSURL *)persistentStoreURL {
@@ -121,7 +116,7 @@ static dispatch_once_t once_token = 0;
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
-    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:[[self class] managedObjectModelURL]];
+    _managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     return _managedObjectModel;
 }
 

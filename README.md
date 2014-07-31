@@ -16,7 +16,9 @@ Import header file:
 
 	#import "APLCoreDataStore.h"
 	
-You need to subclass APLCoreDataStore and override `managedObjectModelURL` and `persistentStoreURL` if your CoreData model name is not "Model".
+APLCoreDataStore uses a merged managed object model of all managed object models found in your application's main bundle.
+
+It creates 'Model.sqlite' in your application's documents folder as persistent store. If you want a different name or location you could subclass APLCoreDataStore and override `persistentStoreURL`.
 
 You can use mainQueueContext and privateQueueContext like this:
 
