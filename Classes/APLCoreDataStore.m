@@ -133,6 +133,7 @@ static dispatch_once_t once_token = 0;
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options: @{NSMigratePersistentStoresAutomaticallyOption:@YES, NSInferMappingModelAutomaticallyOption:@YES} error:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
+        [self preparePersistentStoreCoordinator];
         
         if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
             NSLog(@"Second attempt with unresolved error %@, %@", error, [error userInfo]);

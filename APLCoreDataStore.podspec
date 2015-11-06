@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "APLCoreDataStore"
-  s.version      = "0.0.2"
+  s.version      = "0.0.3"
   s.summary      = "CoreData stack with synchronized NSManagedObjectContexts for main and private queue."
 
   s.description  = <<-DESC
